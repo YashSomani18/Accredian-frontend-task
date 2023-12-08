@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import LoginForm from "./components/LoginForm";
+import SignUpForm from "./components/SignupForm";
+import { Container, Grid } from "@mui/material";
 
 function App() {
+  const [signUp, setSignUp] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Grid
+        container
+        justifyContent="center"
+        alignItems="center"
+        style={{ minHeight: "100vh" }}
+      >
+        {!signUp && (
+          <Grid item xs={12} sm={6}>
+            <LoginForm onToggle={() => setSignUp(true)} />
+          </Grid>
+        )}
+        {signUp && (
+          <Grid item xs={12} sm={6}>
+            <SignUpForm onToggle={() => setSignUp(false)} />
+          </Grid>
+        )}
+      </Grid>
+    </Container>
   );
 }
 
